@@ -16,8 +16,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import redirect
+from appshot.views import TodoList
+
+
+def redirect_to_todo_list_detail(request):
+    first_todo_list = TodoList.objects.first()
+    if first_todo_list:
+        return redirect("todos:todo_list_detail", id=first_todo_list.id)
+    else:
+        # Handle the case when no TodoList exists
+        return redirect("todos:todo_list_list")
+
 
 urlpatterns = [
+    path("", redirect_to_todo_list_detail, name="todo_list_detail"),
     path("admin/", admin.site.urls),
     path("todos/", include(("appshot.urls", "todos"), namespace="todos")),
 ]
