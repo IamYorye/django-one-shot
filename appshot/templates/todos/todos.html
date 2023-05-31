@@ -20,8 +20,7 @@ Todo Lists
                 {% for todo_list in todo_lists %}
                 <tr>
                     <td>
-                        <a href="{% url 'todos:todo_list_detail' todo_list.id %}">
-                            {{ todo_list.name }}
+                        <a href="{% url 'todos:todo_list_detail' id=todo_list.id %}">{{ todo_list.name }}
                         </a>
                     </td>
                     <td>{{ todo_list.items.count }}</td>

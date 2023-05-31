@@ -8,8 +8,8 @@ Todo Lists
 <main>
     <div>
         <h1>{{todo_list.name}}</h1>
+        <p><a href="{% url 'todos:todo_list_update' id=todo_list.id %}">Edit</a></p>
         <h2>Tasks</h2>
-
         <table>
             <thead>
                 <tr>
@@ -20,7 +20,7 @@ Todo Lists
             <tbody>
                 {% for task in tasks %}
                 <tr>
-                    <td>{{task.task}}</td>
+                    <td><a href="{% url 'todos:todo_list_list' %}">{{task.task}}</a></td>
                     <td>{{task.due_date}}</td>
                 </tr>
                 {% endfor %}
