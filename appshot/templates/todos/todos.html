@@ -1,34 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo Lists</title>
-</head>
+{% block title %}
+Todo Lists
+{% endblock title %}
 
-<body>
-    <main>
-        <div>
-            <h1>My Lists</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Number of items</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for todo_list in todo_lists %}
-                    <tr>
-                        <td>{{todo_list.name}}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </main>
-</body>
-
-</html>
+{% block content %}
+<main>
+    <div>
+        <h1>My Lists</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Number of Items</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for todo_list in todo_lists %}
+                <tr>
+                    <td>
+                        <a href="{% url 'todos:todo_list_detail' todo_list.id %}">
+                            {{ todo_list.name }}
+                        </a>
+                    </td>
+                    <td>{{ todo_list.items.count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+{% endblock content %}
