@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Create Todo Item
+{% endblock title %}
+
+{% block content %}
+<main>
+    <div>
+        <h1>Create a new Item</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" name="submit" value="Submit">
+        </form>
+    </div>
+</main>
+{% endblock content %}
